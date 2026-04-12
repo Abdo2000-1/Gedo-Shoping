@@ -1,0 +1,522 @@
+/* ============================================================================
+   ATTAR SHOP - CSS STYLESHEET (Enhanced Design)
+   ============================================================================ */
+
+:root {
+    /* --- Modernized Color Palette --- */
+    --p-gold: #c6a664;          /* ذهبي راقي */
+    --p-gold-dark: #a18349;     /* ذهبي غامق للهوفّر */
+    --p-brown: #5D4037;         /* بني عطارة دافئ */
+    
+    --bg-main: #FFFFFF;
+    --bg-sub: #F9F7F3;          /* خلفية فرعية بيج فاتح جداً */
+    --text-main: #212121;
+    --text-sub: #616161;
+    --border: #EEEEEE;
+    
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+
+    /* --- Typography --- */
+    --font-ar: 'Cairo', sans-serif;
+    --font-en: 'Cairo', sans-serif; 
+    --font-serif: 'Playfair Display', serif; 
+    
+    --fs-base: 16px;
+    --fs-sm: 14px;
+    --fs-xs: 12px;
+    --fs-lg: 18px;
+    --fs-xl: 22px;
+    --fs-2xl: 36px;
+    
+    /* --- Other --- */
+    --nav-height: 70px; 
+    --radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* --- Dark Mode Colors --- */
+body.dark-mode {
+    --bg-main: #121212;
+    --bg-sub: #1E1E1E;
+    --text-main: #F5F5F5;
+    --text-sub: #B0B0B0;
+    --border: #333333;
+    
+    --p-gold: #ebab35;          
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ============================================================================
+   RESET & BASE STYLES
+   ============================================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: var(--font-ar);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--bg-primary); /* تصحيح لـ var(--bg-main) */
+    background-color: var(--bg-main);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================================================
+   ENHANCED NAVIGATION BAR (Slim & Consistent)
+   ============================================================================ */
+.navbar {
+    height: var(--nav-height);
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: background var(--transition), border var(--transition);
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo & Brand */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-wrapper {
+    height: 45px; 
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.brand-logo {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.brand-text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    color: var(--p-gold);
+    line-height: 1.1;
+    font-family: var(--font-serif); 
+}
+
+.brand-subtitle {
+    font-size: var(--fs-xs);
+    color: var(--text-sub);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Controls (Theme, Cart) */
+.nav-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text-main);
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: var(--bg-sub);
+    color: var(--p-gold);
+}
+
+/* Theme Toggle Icons */
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+body.dark-mode .icon-sun { display: block; color: #FFD600; }
+body.dark-mode .icon-moon { display: none; }
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #E74C3C;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================================
+   HERO SECTION (With Faded Moved Image Background) - (تم التعديل هنا)
+   ============================================================================ */
+.hero {
+    position: relative;
+    height: 380px; 
+    display: flex;
+    align-items: center;
+    background-color: var(--p-brown); 
+    color: white;
+    overflow: hidden; 
+}
+
+/* تأثير الصورة المتحركة الباهتة */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10%; 
+    width: 120%; 
+    height: 100%;
+    background-image: url('https://elreefytrading.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-25-at-1.22.26-PM.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* تم تقليل الشفافية قليلاً لوضوح أكبر للنص واللوجو */
+    animation: moveBackground 25s linear infinite; 
+    filter: sepia(50%) contrast(110%); 
+}
+
+@keyframes moveBackground {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5%); }
+    100% { transform: translateX(0); }
+}
+
+.hero-wrapper {
+    z-index: 1; 
+    width: 100%;
+}
+
+.hero-content {
+    max-width: 600px;
+    text-align: right;
+}
+
+/* --- تم إضافة هذه الأكواد لضبط العنوان بجانب اللوجو --- */
+.hero-header {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* المسافة بين اللوجو والعنوان */
+    margin-bottom: 10px;
+}
+
+.hero-logo-wrapper {
+    height: 60px; /* حجم اللوجو في الـ Hero */
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0; /* لمنع اللوجو من الانكماش */
+}
+
+.hero-logo {
+    
+    max-height: 100%;   
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.hero-title {
+    font-size: var(--fs-2xl);
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 0; /* إزالة المارجن لضبطه بجانب اللوجو */
+}
+/* ---------------------------------------------------- */
+
+.hero-subtitle {
+    font-size: var(--fs-xl);
+    font-weight: 400;
+    font-family: var(--font-serif);
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.hero-description {
+    font-size: var(--fs-base);
+    opacity: 0.8;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.shop-now-btn {
+    padding: 12px 30px;
+    background: var(--p-gold);
+    color: var(--p-brown);
+    border: none;
+    border-radius: 4px;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.shop-now-btn:hover {
+    background: white;
+    color: var(--p-brown);
+    transform: translateY(-2px);
+}
+
+/* ============================================================================
+   CATEGORIES SECTION
+   ============================================================================ */
+.categories-section {
+    background: var(--bg-sub);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition), border var(--transition);
+}
+
+.categories-scroll-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; 
+    padding-bottom: 10px;
+    justify-content: start; 
+}
+
+@media (min-width: 769px) {
+    .categories-scroll-container {
+        justify-content: center;
+    }
+}
+
+.category-btn {
+    padding: 8px 20px;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 20px; 
+    color: var(--text-main);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-btn .en {
+    font-size: var(--fs-xs);
+    color: var(--text-sub);
+}
+
+.category-btn:hover {
+    border-color: var(--p-gold);
+}
+
+.category-btn.active {
+    background: var(--p-gold);
+    color: white;
+    border-color: var(--p-gold);
+}
+
+.category-btn.active .en {
+    color: white;
+    opacity: 0.8;
+}
+
+/* ============================================================================
+   PRODUCTS GRID & CARD
+   ============================================================================ */
+.products-section {
+    padding: 40px 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 20px;
+}
+
+.product-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+}
+
+.product-image-wrapper {
+    height: 180px;
+    background: var(--bg-sub);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px; 
+    overflow: hidden;
+}
+
+.product-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.product-title {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    color: var(--p-gold);
+    margin-bottom: 15px;
+    margin-top: auto; 
+}
+
+.add-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--p-gold);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.add-btn:hover {
+    background: var(--p-gold-dark);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN (تعديلات الموبايل)
+   ============================================================================ */
+@media (max-width: 768px) {
+    :root {
+        --nav-height: 60px; 
+        --fs-2xl: 26px; /* أنحف للعناوين المدمجة */
+        --fs-xl: 18px;
+    }
+
+    .brand-logo { height: 35px; }
+    .brand-name { font-size: var(--fs-lg); }
+    .brand-subtitle { font-size: 10px; }
+
+    .hero { height: 320px; }
+    .hero-content { text-align: center; margin: 0 auto; }
+    
+    /* ضبط العنوان واللوجو في الموبايل */
+    .hero-header { justify-content: center; gap: 10px; }
+    .hero-logo-wrapper { height: 45px; width: 45px; }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    
+    .product-card { padding: 10px; }
+    .product-image-wrapper { height: 140px; }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+    .product-title { font-size: var(--fs-sm); }
+    .product-price { font-size: var(--fs-base); }
+    
+    /* تقليل حجم اللوجو والعنوان للعرض الصغير جداً */
+    .hero-logo-wrapper { height: 40px; width: 40px; }
+    .hero-title { font-size: 22px; }
+}
+
+/* ============================================================================
+   Cart, Overlay, Footer (كما هي)
+   ============================================================================ */
+.cart-sidebar {
+    position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100vh;
+    background: var(--bg-main); z-index: 2000;
+    box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; transition: right var(--transition);
+}
+.cart-sidebar.open { right: 0; }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1500; opacity: 0; pointer-events: none; transition: var(--transition); }
+.overlay.active { opacity: 1; pointer-events: auto; }
+.cart-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-sub); }
+.cart-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-main); }
+.cart-items-container { flex: 1; overflow-y: auto; padding: 20px; }
+.cart-footer { padding: 20px; border-top: 2px solid var(--border); background: var(--bg-sub); }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-sub); }
+.summary-row.total { font-weight: 700; color: var(--text-main); font-size: var(--fs-lg); border-top: 1px solid var(--border); padding-top: 10px; }
+.order-btn { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+.footer {
+    background: var(--bg-sub);
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--text-sub);
+    margin-top: auto; 
+}
+.footer-content { display: flex; flex-direction: column; gap: 10px; }
+.footer p { font-size: var(--fs-sm); }
+.footer-contact { color: var(--text-main); font-weight: 600; gap: 8px; justify-content: center; }

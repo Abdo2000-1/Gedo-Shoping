@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم - Gedo Shoping</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loginSection" class="admin-card">
+        <h2>تسجيل دخول الإدارة</h2>
+        <input type="email" id="adminEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="adminPassword" placeholder="كلمة المرور">
+        <button onclick="handleLogin()">دخول</button>
+        <p id="loginError" style="color: red; display: none;">بيانات الدخول غير صحيحة!</p>
+    </div>
+
+    <div id="adminPanel" class="admin-card" style="display: none;">
+        <h2>إضافة منتج جديد للعميل سامح</h2>
+        <div class="form-group">
+            <input type="text" id="pName" placeholder="اسم المنتج بالعربي">
+            <input type="text" id="pNameEn" placeholder="اسم المنتج بالإنجليزي">
+            <input type="number" id="pPrice" placeholder="السعر">
+            <select id="pCategory">
+                <option value="spices">بهارات</option>
+                <option value="herbs">أعشاب</option>
+                <option value="coffee">بن</option>
+                <option value="oils">زيوت</option>
+                <option value="incense">بخور</option>
+                <option value="cosmetics">تجميل</option>
+            </select>
+            <input type="text" id="pEmoji" placeholder="الإيموجي (مثل 🍯)">
+            <textarea id="pDesc" placeholder="وصف المنتج"></textarea>
+        </div>
+        <button onclick="addProduct()">حفظ ونشر المنتج</button>
+        <button onclick="logout()" class="logout-btn">تسجيل خروج</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase-app/10.0.0/firebase-app.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase-firestore/10.0.0/firebase-firestore.min.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
