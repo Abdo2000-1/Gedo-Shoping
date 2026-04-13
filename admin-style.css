@@ -1,38 +1,139 @@
+/* استيراد الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
 body {
     font-family: 'Cairo', sans-serif;
-    background-color: #f4f1ea;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px; /* لضمان وجود مسافة في الجوال */
+    box-sizing: border-box;
+    color: #2d3436;
 }
+
 .admin-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
     width: 100%;
-    max-width: 450px;
+    max-width: 480px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.8);
 }
+
+/* تأثير خفيف عند تمرير الماوس على الكارت */
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+.form-group label {
+    display: block;
+    text-align: right;
+    font-weight: 700;
+    font-size: 14px;
+    color: #636e72;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
 input, select, textarea {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
     box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #f8fafc;
 }
+
+/* حركات التركيز Focus */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #c6a664;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(198, 166, 100, 0.15);
+}
+
 button {
     width: 100%;
-    padding: 12px;
-    background-color: #c6a664;
+    padding: 14px;
+    background: linear-gradient(45deg, #c6a664, #d4b982);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(198, 166, 100, 0.3);
 }
-button:hover { background-color: #a18349; }
-.logout-btn { background-color: #ff4444; margin-top: 10px; }
+
+button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(198, 166, 100, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #ff4757, #ff6b81);
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.2);
+}
+
+.logout-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.3);
+}
+
+/* صندوق رفع الصور المطور */
+.image-upload-box {
+    border: 2px dashed #cbd5e0;
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 15px 0 25px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image-upload-box:hover {
+    border-color: #c6a664;
+    background: rgba(198, 166, 100, 0.03);
+}
+
+.upload-hint {
+    color: #718096;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* جعل التصميم متجاوب بالكامل (Responsive) */
+@media (max-width: 480px) {
+    .admin-card {
+        padding: 25px;
+        border-radius: 18px;
+    }
+    
+    input, button {
+        padding: 12px;
+    }
+}

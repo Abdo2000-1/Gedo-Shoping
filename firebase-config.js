@@ -24,3 +24,5 @@ const CURRENCY = "EGP";
 
 console.log('Firebase initialized successfully!');
 console.log('Database reference:', db);
+
+const storage = firebase.storage();

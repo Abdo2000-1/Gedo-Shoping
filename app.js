@@ -38,8 +38,9 @@ const categoryButtons = document.querySelectorAll('.category-btn');
 document.addEventListener('DOMContentLoaded', async () => {
     loadTheme();
     
-    // سحب المنتجات من فايربيز عند فتح الصفحة
+    // سحب المنتجات والعروض من فايربيز عند فتح الصفحة
     await loadProducts();
+    await loadOffers();
     
     setupEventListeners();
     loadCartFromLocalStorage();
@@ -124,6 +125,110 @@ function loadFallbackProducts() {
             active: true
         }
     ];
+}
+
+/* ============================================================================
+   OFFERS MANAGEMENT
+   ============================================================================ */
+
+let allOffers = [];
+const offerQuantities = {};
+
+async function loadOffers() {
+    const grid = document.getElementById('offersGrid');
+    const empty = document.getElementById('offersEmpty');
+    const badge = document.getElementById('offersNavBadge');
+    if (!grid) return;
+
+    try {
+        if (typeof db === 'undefined') { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+        
+        const snap = await db.collection('offers').where('active', '==', true).get();
+        allOffers = [];
+        snap.forEach(doc => allOffers.push({ id: doc.id, ...doc.data() }));
+
+        if (allOffers.length === 0) {
+            grid.innerHTML = '';
+            empty.style.display = 'block';
+            document.getElementById('offersSection').style.display = 'none';
+            return;
+        }
+
+        document.getElementById('offersSection').style.display = 'block';
+        // Update nav badge
+        badge.textContent = allOffers.length;
+        badge.style.display = 'flex';
+        
+        renderOffers();
+    } catch (e) {
+        console.error('Error loading offers:', e);
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+    }
+}
+
+function renderOffers() {
+    const grid = document.getElementById('offersGrid');
+    grid.innerHTML = allOffers.map(offer => {
+        const discount = Math.round(((offer.original_price - offer.sale_price) / offer.original_price) * 100);
+        const savings = offer.original_price - offer.sale_price;
+        const qty = offerQuantities[offer.id] || 0;
+        const imgHtml = offer.image_url
+            ? `<img src="${offer.image_url}" alt="${offer.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+               <span class="offer-emoji-fallback" style="display:none">${offer.image_emoji || '🏷️'}</span>`
+            : `<span class="offer-emoji-fallback">${offer.image_emoji || '🏷️'}</span>`;
+
+        return `
+        <div class="offer-card">
+            <div class="offer-discount-badge">🔥 خصم ${discount}%</div>
+            <div class="offer-image-wrapper">${imgHtml}</div>
+            <div class="offer-info">
+                <div class="offer-name">${offer.name}</div>
+                ${offer.description ? `<div class="offer-description">${offer.description}</div>` : ''}
+                <div class="offer-pricing">
+                    <span class="offer-original-price">EGP ${offer.original_price}</span>
+                    <span class="offer-sale-price">EGP ${offer.sale_price}</span>
+                    <span class="offer-savings">وفّر ${savings} EGP</span>
+                </div>
+                <div class="offer-actions">
+                    <div class="offer-qty-control">
+                        <button class="offer-qty-btn" onclick="changeOfferQty('${offer.id}', -1)">−</button>
+                        <span class="offer-qty-display" id="offer-qty-${offer.id}">${qty}</span>
+                        <button class="offer-qty-btn" onclick="changeOfferQty('${offer.id}', 1)">+</button>
+                    </div>
+                    <button class="offer-add-btn" onclick="addOfferToCart('${offer.id}')">
+                        <span>🛒</span> أضف للسلة
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function changeOfferQty(offerId, delta) {
+    offerQuantities[offerId] = Math.max(0, (offerQuantities[offerId] || 0) + delta);
+    const el = document.getElementById(`offer-qty-${offerId}`);
+    if (el) el.textContent = offerQuantities[offerId];
+}
+
+function addOfferToCart(offerId) {
+    const qty = offerQuantities[offerId] || 0;
+    if (qty <= 0) { alert('من فضلك اختر الكمية أولاً'); return; }
+    const offer = allOffers.find(o => o.id === offerId);
+    if (!offer) return;
+
+    const productVersion = { ...offer, price: offer.sale_price, id: 'offer_' + offerId };
+    const existing = cart.find(item => item.id === productVersion.id);
+    if (existing) { existing.quantity += qty; }
+    else { cart.push({ ...productVersion, quantity: qty }); }
+
+    offerQuantities[offerId] = 0;
+    const el = document.getElementById(`offer-qty-${offerId}`);
+    if (el) el.textContent = 0;
+
+    saveCartToLocalStorage();
+    updateCartUI();
+    showNotification(`تم إضافة ${offer.name} للسلة 🔥`);
 }
 
 /* ============================================================================

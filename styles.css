@@ -4,12 +4,12 @@
 
 :root {
     /* --- Modernized Color Palette --- */
-    --p-gold: #c6a664;          /* ذهبي راقي */
-    --p-gold-dark: #a18349;     /* ذهبي غامق للهوفّر */
-    --p-brown: #5D4037;         /* بني عطارة دافئ */
+    --p-gold: #c6a664;          
+    --p-gold-dark: #a18349;    
+    --p-brown: #5D4037;        
     
     --bg-main: #FFFFFF;
-    --bg-sub: #F9F7F3;          /* خلفية فرعية بيج فاتح جداً */
+    --bg-sub: #F9F7F3;          
     --text-main: #212121;
     --text-sub: #616161;
     --border: #EEEEEE;
@@ -66,7 +66,7 @@ body {
     font-size: var(--fs-base);
     line-height: 1.6;
     color: var(--text-main);
-    background-color: var(--bg-primary); /* تصحيح لـ var(--bg-main) */
+    background-color: var(--bg-primary); 
     background-color: var(--bg-main);
     transition: background-color var(--transition), color var(--transition);
 }
@@ -196,7 +196,7 @@ body.dark-mode .icon-moon { display: none; }
 }
 
 /* ============================================================================
-   HERO SECTION (With Faded Moved Image Background) - (تم التعديل هنا)
+   HERO SECTION (With Faded Moved Image Background) - 
    ============================================================================ */
 .hero {
     position: relative;
@@ -208,7 +208,7 @@ body.dark-mode .icon-moon { display: none; }
     overflow: hidden; 
 }
 
-/* تأثير الصورة المتحركة الباهتة */
+
 .hero::before {
     content: '';
     position: absolute;
@@ -219,7 +219,7 @@ body.dark-mode .icon-moon { display: none; }
     background-image: url('https://elreefytrading.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-25-at-1.22.26-PM.jpeg'); 
     background-size: cover;
     background-position: center;
-    opacity: 0.15; /* تم تقليل الشفافية قليلاً لوضوح أكبر للنص واللوجو */
+    opacity: 0.15; 
     animation: moveBackground 25s linear infinite; 
     filter: sepia(50%) contrast(110%); 
 }
@@ -240,16 +240,16 @@ body.dark-mode .icon-moon { display: none; }
     text-align: right;
 }
 
-/* --- تم إضافة هذه الأكواد لضبط العنوان بجانب اللوجو --- */
+
 .hero-header {
     display: flex;
     align-items: center;
-    gap: 15px; /* المسافة بين اللوجو والعنوان */
+    gap: 15px; 
     margin-bottom: 10px;
 }
 
 .hero-logo-wrapper {
-    height: 150px; /* حجم اللوجو في الـ Hero */
+    height: 150px; 
     width: auto;
     padding: 3px;
     margin-left: -50px;
@@ -257,7 +257,7 @@ body.dark-mode .icon-moon { display: none; }
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    flex-shrink: 0; /* لمنع اللوجو من الانكماش */
+    flex-shrink: 0; 
 }
 
 .hero-logo {
@@ -273,7 +273,7 @@ body.dark-mode .icon-moon { display: none; }
     font-family: var(--font-serif);
     color: white;
     line-height: 1.1;
-    margin-bottom: 0; /* إزالة المارجن لضبطه بجانب اللوجو */
+    margin-bottom: 0; 
 }
 /* ---------------------------------------------------- */
 
@@ -386,7 +386,6 @@ body.dark-mode .icon-moon { display: none; }
    PRODUCT CARD WITH LINEAR GRADIENT BACKGROUND
    ============================================================================ */
 .product-card {
-    /* التدرج: ذهبي خفيف جداً -> أسود -> ذهبي خفيف جداً */
     background: linear-gradient(
         to right, 
         rgba(198, 166, 100, 0.05) 0%, 
@@ -405,7 +404,6 @@ body.dark-mode .icon-moon { display: none; }
     position: relative;
     overflow: hidden;
     
-    /* لو عايز تحافظ على النقاط الذهبية اللي عملناها فوق مع الجريديانت */
     background-image: 
         radial-gradient(rgba(198, 166, 100, 0.08) 1.5px, transparent 1.5px),
         linear-gradient(to right, rgba(198, 166, 100, 0.05), var(--bg-main) 20%, var(--bg-main) 80%, rgba(198, 166, 100, 0.05));
@@ -413,7 +411,6 @@ body.dark-mode .icon-moon { display: none; }
     background-position: 0 0, center;
 }
 
-/* تأثير عند الوقوف بالماوس لزيادة الإضاءة الجانبية */
 .product-card:hover {
     background: linear-gradient(
         to right, 
@@ -426,7 +423,6 @@ body.dark-mode .icon-moon { display: none; }
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* حركة صايعة: لما تقف بالماوس على الكارت، النقاط تنور أكتر */
 .product-card:hover {
     background-image: 
         radial-gradient(rgba(198, 166, 100, 0.15) 1.5px, transparent 1.5px), 
@@ -440,23 +436,35 @@ body.dark-mode .icon-moon { display: none; }
     box-shadow: var(--shadow-md);
     border-color: transparent;
 }
-
 .product-image-wrapper {
-    height: 180px;
+    height: 200px;                    
     background: var(--bg-sub);
-    border-radius: 4px;
+    border-radius: 8px;
     margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                /* تملأ المساحة كاملة */
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image-wrapper img {
+    transform: scale(1.08);           /* زوم خفيف عند الـ hover */
+}
+
+/* إيموجي لو مفيش صورة */
+.product-emoji-fallback {
+    font-size: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px; 
-    overflow: hidden;
-}
-
-.product-image {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 .product-title {
@@ -793,4 +801,348 @@ body.dark-mode .icon-moon { display: none; }
     text-shadow: 0 0 10px #ffcc00; /* توهج ذهبي */
     letter-spacing: 1px; /* تباعد الحروف */
     color: #ffcc00;
+}
+/* ============================================================================
+   OFFERS SECTION
+   ============================================================================ */
+
+/* --- Offers Nav Button --- */
+.offers-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #ff4500, #ff7c00);
+    color: white !important;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font-ar);
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(255, 69, 0, 0.4);
+    animation: offerPulse 2s infinite;
+}
+
+.offers-nav-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 18px rgba(255, 69, 0, 0.6);
+    animation: none;
+}
+
+.offers-nav-icon {
+    font-size: 15px;
+    animation: fireShake 1s infinite;
+}
+
+.offers-nav-badge {
+    background: white;
+    color: #ff4500;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 900;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+@keyframes offerPulse {
+    0%, 100% { box-shadow: 0 3px 12px rgba(255, 69, 0, 0.4); }
+    50% { box-shadow: 0 3px 20px rgba(255, 69, 0, 0.8); }
+}
+
+@keyframes fireShake {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* --- Offers Section Container --- */
+.offers-section {
+    padding: 60px 0;
+    background: var(--bg-sub);
+    position: relative;
+    overflow: hidden;
+}
+
+.offers-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff4500, #ff7c00, #ff4500, transparent);
+}
+
+.offers-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.offers-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.offers-fire {
+    font-size: 28px;
+    animation: fireShake 1s infinite;
+}
+
+.offers-title {
+    font-family: var(--font-ar);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.offers-subtitle {
+    color: var(--text-sub);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* --- Offers Grid --- */
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* --- Offer Card --- */
+.offer-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.35s ease;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.offer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: #ff6b35;
+}
+
+/* Discount Badge */
+.offer-discount-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: linear-gradient(135deg, #ff4500, #ff7c00);
+    color: white;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 5px 10px;
+    border-radius: 30px;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(255, 69, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    animation: badgePop 0.5s ease;
+}
+
+@keyframes badgePop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Offer Image */
+.offer-image-wrapper {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, var(--bg-sub), var(--bg-main));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.offer-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.offer-card:hover .offer-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.offer-emoji-fallback {
+    font-size: 72px;
+    line-height: 1;
+}
+
+/* Offer Info */
+.offer-info {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.offer-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.3;
+}
+
+.offer-description {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.5;
+}
+
+.offer-pricing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.offer-original-price {
+    font-size: 13px;
+    color: var(--text-sub);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.offer-sale-price {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ff4500;
+}
+
+.offer-savings {
+    font-size: 11px;
+    background: rgba(255, 69, 0, 0.1);
+    color: #ff4500;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* Offer Qty + Add Button */
+.offer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.offer-qty-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-sub);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 10px;
+}
+
+.offer-qty-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 16px;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.offer-qty-btn:hover { color: #ff4500; }
+
+.offer-qty-display {
+    font-weight: 700;
+    min-width: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.offer-add-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #ff4500, #ff7c00);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font-ar);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.offer-add-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+.offer-add-btn:active {
+    transform: scale(0.97);
+}
+
+/* Loading */
+.offers-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: var(--text-sub);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.offers-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: #ff4500;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.offers-empty {
+    text-align: center;
+    padding: 50px;
+    color: var(--text-sub);
+    font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .offers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    .offers-nav-text { display: none; }
+    .offers-nav-btn { padding: 7px 10px; }
 }

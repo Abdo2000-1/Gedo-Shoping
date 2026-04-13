@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gedo Shoping - Premium herbal products, spices, oils, and natural cosmetics">
+    
     <title>Gedo Shoping</title>
+    <meta name="description" content="عطارة جدو - نوفر لك أجود أنواع البهارات والزيوت والأعشاب الطبيعية في مكان واحد.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="عطارة جدو - Gedo Shoping">
+    <meta property="og:description" content="أجود أنواع البهارات والأعشاب والزيوت الطبيعية. جودة نثق بها من جيل لجيل.">
+    <meta property="og:image" content="https://gedo-2000.web.app/images/logo.png"> 
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="theme-color" content="#c6a664">
 </head>
 <body class="dark-mode"> <nav class="navbar">
         <div class="nav-container container">
@@ -24,6 +38,11 @@
             </div>
             
             <div class="nav-controls">
+                <a href="#offersSection" class="offers-nav-btn" id="offersNavBtn">
+                    <span class="offers-nav-icon">🔥</span>
+                    <span class="offers-nav-text">العروض</span>
+                    <span class="offers-nav-badge" id="offersNavBadge" style="display:none;">0</span>
+                </a>
                 <button class="control-btn theme-toggle" id="themeToggle" title="تبديل الوضع">
                     ☀️
                 </button>
@@ -134,6 +153,28 @@
     </aside>
 
     <div class="overlay" id="overlay"></div>
+<section id="offersSection" class="offers-section">
+    <div class="container">
+        <div class="offers-header">
+            <div class="offers-title-wrapper">
+                <span class="offers-fire">🔥</span>
+                <h2 class="offers-title">العروض الحصرية</h2>
+                <span class="offers-fire">🔥</span>
+            </div>
+            <p class="offers-subtitle">Exclusive Deals — عروض محدودة الوقت</p>
+        </div>
+        <div class="offers-grid" id="offersGrid">
+            <div class="offers-loading">
+                <div class="offers-spinner"></div>
+                <p>جاري تحميل العروض...</p>
+            </div>
+        </div>
+        <div class="offers-empty" id="offersEmpty" style="display:none;">
+            <p>لا توجد عروض متاحة حالياً</p>
+        </div>
+    </div>
+</section>
+
 <footer class="main-footer">
     <div class="container footer-content">
         <p class="shop-rights">&copy; 2026 Gedo Shoping | جميع الحقوق محفوظة</p>
@@ -149,6 +190,7 @@
         </div>
 
         <div class="dev-footer">
+            <p>CEO & Founder <a href="https://www.facebook.com/samh.kmal.217283" target="_blank"> <strong>سامح كمال</strong></a></p>
             <p>تم التطوير بكل حب بواسطة <a href="https://github.com/Abdo2000-1" target="_blank">Abdo Al Adawy</a> © 2026</p>
         </div>
     </div>
@@ -159,5 +201,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>
     <script src="app.js"></script>
+
 </body>
 </html>
