@@ -172,7 +172,6 @@ function filterByCategory(category) {
 /* ============================================================================
    RENDERING
    ============================================================================ */
-
 function renderProducts() {
     const productsToShow = (currentCategory === 'all') ? allProducts : allProducts.filter(p => p.category === currentCategory);
     
@@ -186,24 +185,31 @@ function renderProducts() {
     
     productsGrid.innerHTML = productsToShow.map(product => `
         <div class="product-card">
-            <div class="product-image">${product.image_emoji || '📦'}</div>
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-description">${product.description || ''}</p>
-            <div class="product-price">${CURRENCY} ${product.price}</div>
-            
-            <div class="quantity-control">
-                <button class="qty-btn" onclick="decreaseQuantity('${product.id}')">−</button>
-                <div class="qty-display" id="qty-${product.id}">${getQuantity(product.id)}</div>
-                <button class="qty-btn" onclick="increaseQuantity('${product.id}')">+</button>
+            <div class="product-image-wrapper">
+                ${product.image_url 
+                    ? `<img src="${product.image_url}" alt="${product.name}" onerror="this.innerHTML='📦'">` 
+                    : `<span class="product-emoji-fallback">${product.image_emoji || '📦'}</span>`
+                }
             </div>
-            
-            <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">
-                أضف للسلة
-            </button>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description || ''}</p>
+                <div class="product-price">EGP ${product.price}</div>
+                
+                <div class="quantity-control" style="margin-bottom: 10px; display: flex; justify-content: center; gap: 10px; align-items: center;">
+                    <button class="qty-btn" onclick="decreaseQuantity('${product.id}')" style="width:30px; height:30px; border-radius:50%; border:1px solid #ddd;">−</button>
+                    <div class="qty-display" id="qty-${product.id}" style="font-weight:bold;">${getQuantity(product.id)}</div>
+                    <button class="qty-btn" onclick="increaseQuantity('${product.id}')" style="width:30px; height:30px; border-radius:50%; border:1px solid #ddd;">+</button>
+                </div>
+                
+               <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">
+    <span>🛒</span>
+    أضف للسلة
+</button>
+            </div>
         </div>
     `).join('');
 }
-
 /* ============================================================================
    QUANTITY CONTROL
    ============================================================================ */
@@ -310,7 +316,9 @@ function updateCartUI() {
                         <div class="cart-item-qty-display">${item.quantity}</div>
                         <button class="cart-item-qty-btn" onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})">+</button>
                     </div>
-                    <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">إزالة</button>
+                   <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">
+    🗑️ إزالة
+</button>
                 </div>
             </div>
         `).join('');
@@ -418,3 +426,38 @@ function showNotification(message) {
         setTimeout(() => notification.remove(), 300);
     }, 2000);
 }
+
+/* ============================================================================
+   SECURITY: PREVENT INSPECT ELEMENT & CONTENT COPY
+   ============================================================================ */
+
+// 1. منع كليك يمين
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+// 2. منع اختصارات لوحة التحكم (F12, Ctrl+Shift+I, etc.)
+document.onkeydown = function(e) {
+    // منع F12
+    if(e.keyCode == 123) return false;
+
+    // منع Ctrl+Shift+I (Inspect)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+
+    // منع Ctrl+Shift+C (Select element)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+
+    // منع Ctrl+Shift+J (Console)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+
+    // منع Ctrl+U (View Source)
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+};
+
+// 3. منع سحب الصور أو تحديد النصوص (إضافي للحماية)
+document.addEventListener('dragstart', (e) => e.preventDefault());
+document.styleSheets[0].insertRule('body { user-select: none; -webkit-user-select: none; }', 0);
+
+// 4. التشويش باستخدام الـ Debugger (اختياري لكن قوي)
+// لو حد فتح الـ Console، الموقع هيدخل في حالة إيقاف مؤقت (Pause)
+setInterval(function() {
+    debugger;
+}, 100);

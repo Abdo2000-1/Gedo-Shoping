@@ -7,11 +7,11 @@
     <title>Gedo Shoping</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="light-mode">
-    <nav class="navbar">
+<body class="dark-mode"> <nav class="navbar">
         <div class="nav-container container">
             <div class="nav-brand">
                 <div class="logo-wrapper">
@@ -25,8 +25,7 @@
             
             <div class="nav-controls">
                 <button class="control-btn theme-toggle" id="themeToggle" title="تبديل الوضع">
-                    <span class="icon-sun">☀️</span>
-                    <span class="icon-moon">🌙</span>
+                    ☀️
                 </button>
                 <button class="control-btn cart-icon" id="cartIcon" title="سلة التسوق">
                     <span class="icon-cart">🛒</span>
@@ -47,12 +46,12 @@
                 </div>
                 <p class="hero-subtitle">Premium Natural Products</p>
                 <p class="hero-description">أفضل أنواع البهارات والأعشاب والزيوت ومستحضرات العناية الطبيعية</p>
-                <button class="shop-now-btn">تسوق الآن</button>
+                <a href="#ProductsSection"><button class="shop-now-btn">تسوق الآن</button></a>
             </div>
         </div>
     </section>
 
-    <section class="categories-section">
+    <section id="ProductsSection" class="categories-section">
         <div class="container categories-wrapper">
             <div class="categories-scroll-container">
                 <button class="category-btn active" data-category="all">
@@ -71,7 +70,11 @@
                     <span class="ar">بن</span>
                     <span class="en">Coffee</span>
                 </button>
-                <button class="category-btn" data-category="oils">
+                <button class="category-btn" data-category="honey">
+                    <span class="ar">عسل</span>
+                    <span class="en">Honey</span>
+                 </button>
+                    <button class="category-btn" data-category="oils">
                     <span class="ar">زيوت</span>
                     <span class="en">Oils</span>
                 </button>
@@ -83,15 +86,17 @@
                     <span class="ar">تجميل</span>
                     <span class="en">Cosmetics</span>
                 </button>
+                <button class="category-btn" data-category="medical">
+                <span class="ar">وصفات طبية علاجية</span>
+                <span class="en">Medical Recipes</span>
+            </button>
             </div>
         </div>
     </section>
 
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here -->
-            </div>
+            <div class="products-grid" id="productsGrid"></div>
             <div class="empty-state" id="emptyState" style="display: none;">
                 <p>لا توجد منتجات في هذا القسم حالياً.</p>
             </div>
@@ -118,31 +123,41 @@
                 </div>
             </div>
             <button class="order-btn" id="orderBtn">
-                <span class="whatsapp-icon">📞</span>
-                اطلب عبر واتس أب
+       <div class="whatsapp-icon-circle">
+                    <a href="https://wa.me/201234567890" class="whatsapp-icon" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+                </div>
+                اطلب عبر واتساب الآن
             </button>
         </div>
     </aside>
 
     <div class="overlay" id="overlay"></div>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Gedo Shoping | جميع الحقوق محفوظة</p>
-            <p class="footer-contact">
-                <span class="whatsapp-icon">📱</span>
-                01002402986
-            </p>
+<footer class="main-footer">
+    <div class="container footer-content">
+        <p class="shop-rights">&copy; 2026 Gedo Shoping | جميع الحقوق محفوظة</p>
+        
+        <div class="footer-links">
+            <a href="https://wa.me/2001002402986" target="_blank" class="footer-link-item">
+                <span class="footer-contact">Contact Me: 01002402986</span>
+            </a>
+            
+            <a href="admin.html" target="_blank" class="footer-link-item admin-dash">
+                Admin Dashboard
+            </a>
         </div>
-    </footer>
 
-    <!-- Firebase SDK v9 (Modular) -->
+        <div class="dev-footer">
+            <p>تم التطوير بكل حب بواسطة <a href="https://github.com/Abdo2000-1" target="_blank">Abdo Al Adawy</a> © 2026</p>
+        </div>
+    </div>
+</footer>
+</div>
+
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    
-    <!-- Your config and app files -->
     <script src="firebase-config.js"></script>
     <script src="app.js"></script>
-
 </body>
 </html>

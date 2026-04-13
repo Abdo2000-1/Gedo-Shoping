@@ -109,8 +109,8 @@ body {
 }
 
 .logo-wrapper {
-    height: 45px; 
-    width: 45px;
+    height: 100px; 
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +118,7 @@ body {
 }
 
 .brand-logo {
+    
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
@@ -248,8 +249,10 @@ body.dark-mode .icon-moon { display: none; }
 }
 
 .hero-logo-wrapper {
-    height: 60px; /* حجم اللوجو في الـ Hero */
-    width: 60px;
+    height: 150px; /* حجم اللوجو في الـ Hero */
+    width: auto;
+    padding: 3px;
+    margin-left: -50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -379,8 +382,19 @@ body.dark-mode .icon-moon { display: none; }
     gap: 20px;
 }
 
+/* ============================================================================
+   PRODUCT CARD WITH LINEAR GRADIENT BACKGROUND
+   ============================================================================ */
 .product-card {
-    background: var(--bg-main);
+    /* التدرج: ذهبي خفيف جداً -> أسود -> ذهبي خفيف جداً */
+    background: linear-gradient(
+        to right, 
+        rgba(198, 166, 100, 0.05) 0%, 
+        var(--bg-main) 20%, 
+        var(--bg-main) 80%, 
+        rgba(198, 166, 100, 0.05) 100%
+    );
+    
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 15px;
@@ -388,6 +402,37 @@ body.dark-mode .icon-moon { display: none; }
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* لو عايز تحافظ على النقاط الذهبية اللي عملناها فوق مع الجريديانت */
+    background-image: 
+        radial-gradient(rgba(198, 166, 100, 0.08) 1.5px, transparent 1.5px),
+        linear-gradient(to right, rgba(198, 166, 100, 0.05), var(--bg-main) 20%, var(--bg-main) 80%, rgba(198, 166, 100, 0.05));
+    background-size: 24px 24px, auto;
+    background-position: 0 0, center;
+}
+
+/* تأثير عند الوقوف بالماوس لزيادة الإضاءة الجانبية */
+.product-card:hover {
+    background: linear-gradient(
+        to right, 
+        rgba(198, 166, 100, 0.1) 0%, 
+        var(--bg-main) 25%, 
+        var(--bg-main) 75%, 
+        rgba(198, 166, 100, 0.1) 100%
+    );
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* حركة صايعة: لما تقف بالماوس على الكارت، النقاط تنور أكتر */
+.product-card:hover {
+    background-image: 
+        radial-gradient(rgba(198, 166, 100, 0.15) 1.5px, transparent 1.5px), 
+        radial-gradient(rgba(198, 166, 100, 0.15) 1.5px, transparent 1.5px);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .product-card:hover {
@@ -482,7 +527,10 @@ body.dark-mode .icon-moon { display: none; }
         gap: 10px;
     }
     .product-title { font-size: var(--fs-sm); }
-    .product-price { font-size: var(--fs-base); }
+    .product-price {
+    color: var(--p-gold); /* اللون الأصفر/الذهبي اللي طلبته */
+    font-weight: 800;
+}
     
     /* تقليل حجم اللوجو والعنوان للعرض الصغير جداً */
     .hero-logo-wrapper { height: 40px; width: 40px; }
@@ -507,7 +555,7 @@ body.dark-mode .icon-moon { display: none; }
 .cart-footer { padding: 20px; border-top: 2px solid var(--border); background: var(--bg-sub); }
 .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-sub); }
 .summary-row.total { font-weight: 700; color: var(--text-main); font-size: var(--fs-lg); border-top: 1px solid var(--border); padding-top: 10px; }
-.order-btn { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.order-btn { width: 100%; padding: 15px; background: #e9ca1b; color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
 .footer {
     background: var(--bg-sub);
@@ -520,3 +568,229 @@ body.dark-mode .icon-moon { display: none; }
 .footer-content { display: flex; flex-direction: column; gap: 10px; }
 .footer p { font-size: var(--fs-sm); }
 .footer-contact { color: var(--text-main); font-weight: 600; gap: 8px; justify-content: center; }
+
+
+.whatsapp-icon-circle {
+            color: #25D366; /* لون واتساب الرسمي */
+            font-size: 50px; /* حجم الأيقونة */
+            text-decoration: none;
+            color: #e4a00f !important;
+        }
+
+        /* ============================================================================
+   ENHANCED ADD TO CART BUTTON
+   ============================================================================ */
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--p-gold) 0%, var(--p-gold-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 25px; /* حواف دائرية تعطي شكل أجمل */
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(198, 166, 100, 0.2);
+    margin-top: 5px;
+}
+
+/* تأثير عند تمرير الماوس */
+.add-to-cart-btn:hover {
+    transform: scale(1.03); /* تكبير بسيط جداً */
+    box-shadow: 0 6px 15px rgba(198, 166, 100, 0.4);
+    filter: brightness(1.1);
+}
+
+/* تأثير عند الضغط */
+.add-to-cart-btn:active {
+    transform: scale(0.95);
+}
+
+/* تنسيق أزرار الكمية لتبدو متناسقة مع الزرار الجديد */
+.qty-btn {
+    background: var(--bg-sub);
+    color: var(--text-main);
+    border: 1px solid var(--border) !important; /* تأكيد الحدود */
+    transition: var(--transition);
+}
+
+.qty-btn:hover {
+    background: var(--p-gold);
+    color: white;
+    border-color: var(--p-gold) !important;
+}
+
+/* ============================================================================
+   ENHANCED CART ITEMS DESIGN
+   ============================================================================ */
+.cart-item {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.cart-item:hover {
+    border-color: var(--p-gold);
+    box-shadow: var(--shadow-sm);
+}
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.cart-item-name {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: var(--fs-sm);
+}
+
+.cart-item-price {
+    color: var(--p-gold);
+    font-weight: 800;
+}
+
+/* تحسين التحكم في الكمية داخل السلة */
+.cart-item-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+}
+
+.cart-item-qty-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-sub);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.cart-item-qty-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 18px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.cart-item-qty-btn:hover {
+    color: var(--p-gold);
+    transform: scale(1.2);
+}
+
+.cart-item-qty-display {
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* زر الإزالة بشكل شيك */
+.cart-item-remove {
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cart-item-remove:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+
+/* التنسيق العام للفوتر الأساسي */
+.main-footer {
+    background-color:#4e422a;
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.shop-rights {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-link-item.admin-dash{
+    background-color: #c6a664;
+    border-radius: 12px;
+    display: inline-block; /* يمنع خروج التأثير بره النص */
+    text-decoration: none;
+    color: #0f0101;
+    font-weight: bold;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.footer-link-item:hover {
+    color: #fff;
+}
+
+/* ستايل توقيعك الخاص (الذي اخترته) */
+.dev-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.dev-footer p {
+    font-size: 14px;
+    color: #888;
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+}
+
+/* تطبيق الستايل الذهبي على اسمك فقط */
+.dev-footer a {
+    color: #d4af37; /* اللون الذهبي */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block; /* لضمان نطاق اللينك */
+    transition: all 0.3s ease; /* سرعة التحول */
+}
+
+/* تأثير الـ Hover اللي عجبك */
+.dev-footer a:hover {
+    text-shadow: 0 0 10px #ffcc00; /* توهج ذهبي */
+    letter-spacing: 1px; /* تباعد الحروف */
+    color: #ffcc00;
+}
