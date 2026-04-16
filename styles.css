@@ -311,6 +311,8 @@ body.dark-mode .icon-moon { display: none; }
     transform: translateY(-2px);
 }
 
+
+
 /* ============================================================================
    CATEGORIES SECTION
    ============================================================================ */
@@ -1145,4 +1147,132 @@ body.dark-mode .icon-moon { display: none; }
     }
     .offers-nav-text { display: none; }
     .offers-nav-btn { padding: 7px 10px; }
+}
+
+/* ============================================================================
+   تعديل حجم اللوجو في الموبايل (مضاف في نهاية الملف)
+   ============================================================================ */
+@media (max-width: 768px) {
+    .hero-header {
+        justify-content: center !important;
+        gap: 15px !important;
+    }
+    .hero-logo-wrapper {
+        height: 90px !important;
+        width: auto !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo-wrapper {
+        height: 80px !important;
+        width: auto !important;
+        margin-left: 0 !important;
+    }
+    .hero-title {
+        font-size: 24px !important;
+    }
+}
+
+/* ============================================================================
+   ستايل قسم قنواتنا الخرافي
+   ============================================================================ */
+.social-channels {
+    padding: 60px 0;
+    text-align: center;
+    background: var(--bg-sub); /* يتماشى مع خلفية الموقع */
+    transition: var(--transition);
+}
+
+.channels-title {
+    font-family: var(--font-ar);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--p-gold);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.channels-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--p-gold);
+    border-radius: 2px;
+}
+
+.channels-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.channel-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    color: var(--text-main);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+}
+
+.channel-card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.channel-card span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* تأثيرات الـ Hover الملونة */
+.channel-card.tiktok:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #00f2ea;
+    box-shadow: 0 10px 25px rgba(0, 242, 234, 0.3);
+    border-color: #ff0050;
+    transform: translateY(-10px) rotate(3deg);
+}
+
+.channel-card.facebook:hover {
+    background: #1877f2;
+    color: white;
+    box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+    border-color: #1877f2;
+    transform: translateY(-10px) rotate(-3deg);
+}
+
+.channel-card.whatsapp:hover {
+    background: #25d366;
+    color: white;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    border-color: #25d366;
+    transform: translateY(-10px) scale(1.1);
+}
+
+/* توافق الموبايل */
+@media (max-width: 480px) {
+    .channel-card {
+        width: 100px;
+        height: 100px;
+        border-radius: 18px;
+    }
+    .channel-card i { font-size: 28px; }
+    .channel-card span { font-size: 13px; }
+    .channels-grid { gap: 15px; }
 }
